@@ -9,7 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
-    // associations can be defined here
+    User.belongsToMany(models.Place, {
+      through: 'UserPlace',
+      foreignKey: 'userId',
+      otherKey: 'placeId'
+    })
   };
   return User;
 };

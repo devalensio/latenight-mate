@@ -3,7 +3,9 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-  models.Place.findAll().then(places => {
+  models.Place.findAll({
+    order: ['name']
+  }).then(places => {
     res.render('places/places', {places})
   })
 })
