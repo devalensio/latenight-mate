@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
     age: DataTypes.INTEGER
   }, {});
   User.associate = function(models) {
+    User.belongsToMany(models.Place, {
+      through: 'UserPlace',
+      foreignKey: 'userId',
+      otherKey: 'placeId'})
     User.belongsToMany(models.Genre, {
       through: 'UserGenre',
       foreignKey: 'userId',

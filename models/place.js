@@ -6,7 +6,11 @@ module.exports = (sequelize, DataTypes) => {
     priceRange: DataTypes.STRING
   }, {});
   Place.associate = function(models) {
-    // associations can be defined here
+    Place.belongsToMany(models.User, {
+      through: 'UserPlace',
+      foreignKey: 'placeId',
+      otherKey: 'userId'
+    })
   };
   return Place;
 };
