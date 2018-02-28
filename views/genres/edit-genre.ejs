@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Genre</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <center>
+      <h1>Edit Data Genre</h1>
+    </center>
+    <div class="container">
+        <form class="form-group" action="/genres/edit/<%=data_genre.id%>" method="post">
+          <div class="form-group">
+            <label for="name">Name of Genre:</label>
+            <input type="text" name="name" placeholder="Genre" class="form-control" value="<%=data_genre.name%>">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="/genres" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+  </body>
+</html>

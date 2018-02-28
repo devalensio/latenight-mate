@@ -5,13 +5,14 @@ const models = require('./models');
 const app = express();
 
 app.set('view engine', 'ejs');
-
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 const places = require('./routes/places.js');
 const user = require('./routes/user');
+const genre = require('./routes/genre');
 app.use('/places', places);
 app.use('/users', user);
+app.use('/genres', genre);
 
 app.listen(3000, console.log('AYE AYE CAPTAIN!'))

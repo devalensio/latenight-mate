@@ -5,7 +5,10 @@ const models = require('../models')
 router.get('/', function (req, res) {
   models.User.findAll({
     order: [
-      'id']
+      'id'],
+    include: {
+      model: models.Genre
+    }
     }).then(data => {
     res.render('users/user', {data_user: data})
   })
