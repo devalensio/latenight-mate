@@ -11,6 +11,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'placeId',
       otherKey: 'userId'
     })
+    Place.belongsToMany(models.Genre, {
+      through: 'UserPlace',
+      foreignKey: 'placeId',
+      otherKey: 'genreId'
+    })
   };
   return Place;
 };
