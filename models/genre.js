@@ -4,7 +4,11 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {});
   Genre.associate = function(models) {
-    // associations can be defined here
+    Genre.belongsToMany(models.User, {
+      through: 'UserGenre',
+      foreignKey: 'genreId',
+      otherKey: 'userId'
+    })
   };
   return Genre;
 };
