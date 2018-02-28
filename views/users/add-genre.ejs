@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head>
+   <meta charset=“utf-8”>
+   <link rel=“stylesheet” href=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css“>
+   <script src=“https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js”></script>
+   <script src=“https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js”></script>
+   <title>assign genre</title>
+ </head>
+ <body>
+   <div class=“container”>
+      <center>
+         <h1>
+            Mate-Night
+         </h1>
+         <h3>
+            Hello , <%= data_user.name %><br>
+         </h3>
+         <h3>
+            We would like to know what ur favorite genre is .
+         </h3>
+      </center>
+     <center>
+     <div class="container">
+      <h2>Choose ur fav'Genre</h2>
+      <form class="" action="/users/<%=data_user.id%>/addgenre" method="post">
+         <select name="id_genre">
+           <%data_genre.forEach((data) =>
+           {%>
+             <option value="<%=data.id%>"> <%=data.name%> </option>
+             <%})%>
+           </select>
+           <br \>
+           <br \>
+           <button>Add Genre</button>
+         </form>
+      </div>
+
+   </center>
+   </div>
+ </body>
+</html>
