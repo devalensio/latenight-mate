@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Edit Place</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title></title>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Edit Place</h2></br>
+        <form class="form-group" action="/places/<%=places.id%>/edit" method="post">
+          <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="name" placeholder="Enter name" class="form-control" value="<%=places.name%>">
+          </div>
+          <div class="form-group">
+            <label for="address">Address:</label>
+            <input type="text" name="address" placeholder="Enter address" class="form-control" value="<%=places.address%>">
+          </div>
+          <div class="form-group">
+            <label for="priceRange">Price range:</label>
+            <input type="text" name="priceRange" placeholder="Enter price range" class="form-control" value="<%=places.priceRange%>">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+          <a href="/places" class="btn btn-danger">Cancel</a>
+        </form>
+    </div>
+  </body>
+</html>

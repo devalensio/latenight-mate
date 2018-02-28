@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Places</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <h2>Places</h2>
+      <a href="/places/add" class="btn btn-success btn-xs">
+        <h4>Add Place</h4>
+      </a></br>
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Price Range</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <%places.forEach((place, i)=>{%>
+            <tr>
+              <td><%=i+1%></td>
+              <td><%=place.name%></td>
+              <td><%=place.address%></td>
+              <td><%=place.priceRange%></td>
+              <td>
+                <a href="/places/<%=place.id%>/edit" class="btn btn-info">Edit</a>
+                <a href="/places/<%=place.id%>/delete" class="btn btn-danger" action="/places" onclick="return confirm('Delete this place?')" >Delete</a>
+              </td>
+            </tr>
+          <%})%>
+        </tbody>
+      </table>
+    </div>
+  </body>
+</html>
