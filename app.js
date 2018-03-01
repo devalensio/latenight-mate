@@ -11,6 +11,7 @@ app.use(bodyParser.json())
 const places = require('./routes/places.js');
 const user = require('./routes/user');
 const genre = require('./routes/genre');
+
 app.use('/places', places);
 app.use('/users', user);
 app.use('/genres', genre);
