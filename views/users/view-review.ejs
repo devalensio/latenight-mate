@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <meta charset="utf-8"
+    <title></title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <%if(data_conj.length>0){%>
+        <center>
+          <h1><%=data_conj[0].Place.name%> User's Review</h1>
+        </center>
+        <br>
+        <br>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Username</th>
+              <th>Comment</th>
+              <th>Rating</th>
+            </thead>
+            <tbody>
+              <%data_conj.forEach((data,i) => {%>
+                <tr>
+                  <td><%=i+1%></td>
+                  <td><%=data.User.username%></td>
+                  <td><%=data.comment%></td>
+                  <td>
+                    <%for (let i=0; i<data.rating;i++){%>
+                      ⭐️
+                    <%}%>
+                    <%for (let i=0; i<(5-data.rating);i++){%>
+                      ✩
+                    <%}%>
+                  </td>
+                </tr>
+                <%})%>
+              </tbody>
+            </div>
+      <%} else {%>
+        <center>
+          <h1>No Review Yet</h1>
+        </center>
+      <%}%>
+    </table>
+  </body>
+</html>

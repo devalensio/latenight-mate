@@ -93,21 +93,39 @@ router.post('/:id_user/addgenre', function (req, res) {
       }]
     }).then(data => {
       let test = JSON.parse(JSON.stringify(data))
-      res.redirect(`/users/add-genre?genreId=${req.body.id_genre}`)
+      // console.log(test.Places[0].GenrePlace);
+      res.redirect(`/users/${req.params.id_user}/add-genre?genreId=${req.body.id_genre}`)
     })
   })
 })
 
-router.get('/add-genre',function (req, res) {
+router.get('/:id_user/add-genre',function (req, res) {
   let num_genre = +req.query.genreId
-  models.Genre.findById(num_genre, {
-    include: [{
-      model: models.Place
-    }]
+  models.User.findById(req.params.id_user).then(data => {
+    models.Genre.findById(num_genre,{
+      include: [{
+        model: models.Place
+      }]
+    }).then(data1 => {
+      let test = JSON.parse(JSON.stringify(data))
+      let test1 = JSON.parse(JSON.stringify(data1))
+      console.log(test);
+      console.log(test1);
+      // res.render()
+        res.render('users/show-places', {data_user: data, data_genre: data1})
+    })
+  })
+})
+
+router.get('/:user_id/viewreview/:place_id', function (req, res) {
+  models.UserPlace.findAll({
+    where: {
+      placeId: req.params.place_id
+    },
+    include: [models.User,models.Place]
   }).then(data => {
     let test = JSON.parse(JSON.stringify(data))
-    console.log(test);
-    res.render('users/show-places', {data_genre: data})
+    res.render('users/view-review', {data_conj: data})
   })
 })
 
