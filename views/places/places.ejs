@@ -13,9 +13,6 @@
   <body>
     <div class="container">
       <h2>Places</h2>
-      <a href="/places/add" class="btn btn-success btn-xs">
-        <h4>Add Place</h4>
-      </a></br>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -23,6 +20,7 @@
             <th>Name</th>
             <th>Address</th>
             <th>Price Range</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -32,6 +30,9 @@
               <td><%=place.name%></td>
               <td><%=place.address%></td>
               <td><%=place.priceRange%></td>
+              <td>
+                <a href="/users/0/viewreview/<%=place.id%>" class="btn btn-info">View Review</a>
+              </td>
             </tr>
           <%})%>
         </tbody>
