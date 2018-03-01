@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const sessionChecker = require('../helpers/sessionChecker');
 
-router.get('/', sessionChecker, (req, res) => {
+router.get('/', (req, res) => {
   models.Place.findAll({
     order: ['name']
   }).then(places => {

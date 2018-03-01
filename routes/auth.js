@@ -30,10 +30,12 @@ router.post('/login', loginChecker, (req, res) => {
         req.session.id = user.id;
         req.session.username = user.username;
         res.redirect(`/users/${user.id}/addgenre`)
+      } else {
+        res.render('auth/login', {error: 'username or password incorrect'});
       }
     })
   }).catch(error => {
-    res.render('auth/login', {session: req.session.username, error})
+    res.render('auth/login', {error: 'username or password incorrect'})
   })
 })
 
