@@ -153,4 +153,17 @@ router.post('/:user_id/addreview/:place_id', (req, res) => {
   })
 })
 
+router.get('/:id_user/location', function (req, res) {
+  models.Place.findById(req.params.id_user).then(data => {
+    let test = JSON.parse(JSON.stringify(data))
+    console.log(test);
+    res.render('places/location', {data_place: data})
+  })
+})
+
+
+
+
+
+
 module.exports = router
