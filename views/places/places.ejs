@@ -12,7 +12,9 @@
   </head>
   <body>
     <div class="container">
-      <h2>Places</h2>
+      <center>
+        <h2>Places</h2>
+      </center>
       <table class="table table-bordered">
         <thead>
           <tr>
@@ -27,7 +29,12 @@
           <%places.forEach((place, i)=>{%>
             <tr>
               <td><%=i+1%></td>
-              <td><%=place.name%></td>
+              <td>
+                <a href="/users/<%=place.id%>/location">
+                  <%=place.name%>
+                </a>
+              </td>
+
               <td><%=place.address%></td>
               <td><%=place.priceRange%></td>
               <td>
@@ -36,6 +43,9 @@
             </tr>
           <%})%>
         </tbody>
+        <p>
+          $ = Rp1.000.000,00
+        </p>
       </table>
     </div>
   </body>
