@@ -20,7 +20,6 @@ const places = require('./routes/places');
 const user = require('./routes/user');
 const genre = require('./routes/genre');
 const auth = require('./routes/auth');
-
 app.use('/', index);
 app.use('/places', places);
 app.use('/users', user);

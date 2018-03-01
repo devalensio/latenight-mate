@@ -1,8 +1,9 @@
 const express = require('express');
 const router = express.Router()
 const models = require('../models')
+const sessionChecker = require('../helpers/sessionChecker');
 
-router.get('/', function (req, res) {
+router.get('/', sessionChecker, function (req, res) {
   models.Genre.findAll({
     order: [
       'id']
@@ -12,11 +13,11 @@ router.get('/', function (req, res) {
   })
 })
 
-router.get('/add', function (req, res) {
+router.get('/add', sessionChecker, function (req, res) {
   res.render('genres/add-genre')
 })
 
-router.post('/add', function (req, res) {
+router.post('/add', sessionChecker, function (req, res) {
   let obj = {
     name: req.body.name
   }
@@ -25,13 +26,13 @@ router.post('/add', function (req, res) {
   })
 })
 
-router.get('/edit/:id', function (req, res) {
+router.get('/edit/:id', sessionChecker, function (req, res) {
   models.Genre.findById(req.params.id).then(data => {
     res.render('genres/edit-genre', {data_genre: data})
   })
 })
 
-router.post('/edit/:id', function (req, res) {
+router.post('/edit/:id', sessionChecker, function (req, res) {
   let obj = {
     name: req.body.name
   }
@@ -44,7 +45,7 @@ router.post('/edit/:id', function (req, res) {
   })
 })
 
-router.get('/delete/:id', function (req, res) {
+router.get('/delete/:id', sessionChecker, function (req, res) {
   models.Genre.destroy({
     where: {
       id: req.params.id
@@ -53,7 +54,5 @@ router.get('/delete/:id', function (req, res) {
     res.redirect('/genres')
   })
 })
-
-
 
 module.exports = router
