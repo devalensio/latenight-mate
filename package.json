@@ -17,5 +17,13 @@
     "pg": "^7.4.1",
     "sequelize": "^4.34.1",
     "sequelize-cli": "^4.0.0"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fzgitara/latenight-mate.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fzgitara/latenight-mate/issues"
+  },
+  "homepage": "https://github.com/fzgitara/latenight-mate#readme"
 }
