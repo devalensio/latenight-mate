@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%include ../partials/navbar%>
     <meta charset="utf-8">
     <title>Places</title>
     <meta charset="utf-8">
@@ -22,7 +23,6 @@
             <th>Name</th>
             <th>Address</th>
             <th>Price Range</th>
-            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -32,10 +32,6 @@
               <td><%=place.name%></td>
               <td><%=place.address%></td>
               <td><%=place.priceRange%></td>
-              <td>
-                <a href="/places/<%=place.id%>/edit" class="btn btn-info">Edit</a>
-                <a href="/places/<%=place.id%>/delete" class="btn btn-danger" action="/places" onclick="return confirm('Delete this place?')" >Delete</a>
-              </td>
             </tr>
           <%})%>
         </tbody>
