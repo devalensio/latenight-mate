@@ -1,6 +1,7 @@
 const models = require('../models');
 const express = require('express');
 const router = express.Router();
+const sessionChecker = require('../helpers/sessionChecker');
 
 router.get('/', (req, res) => {
   models.Place.findAll({
@@ -10,11 +11,11 @@ router.get('/', (req, res) => {
   })
 })
 
-router.get('/add', (req, res) => {
+router.get('/add', sessionChecker, (req, res) => {
   res.render('places/add_place')
 })
 
-router.post('/add', (req, res) => {
+router.post('/add', sessionChecker, (req, res) => {
   models.Place.create({
     name: req.body.name,
     address: req.body.address,
@@ -26,13 +27,13 @@ router.post('/add', (req, res) => {
   })
 })
 
-router.get('/:id/edit', (req, res) => {
+router.get('/:id/edit', sessionChecker, (req, res) => {
   models.Place.findById(req.params.id).then(places => {
     res.render('places/edit_place', {places})
   })
 })
 
-router.post('/:id/edit', (req, res) => {
+router.post('/:id/edit', sessionChecker, (req, res) => {
   models.Place.update({
     name: req.body.name,
     address: req.body.address,
@@ -46,7 +47,7 @@ router.post('/:id/edit', (req, res) => {
   })
 })
 
-router.get('/:id/delete', (req, res) => {
+router.get('/:id/delete', sessionChecker, (req, res) => {
   models.Place.destroy({where: {id: req.params.id}
   }).then(() => {
     res.redirect('/places')

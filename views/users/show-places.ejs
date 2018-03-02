@@ -1,5 +1,6 @@
 <html>
   <head>
+    <%include ../partials/navbar%>
     <meta charset="utf-8"
     <title></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -27,12 +28,14 @@
               <tr>
                 <td><%=i+1%></td>
                 <td>
-                  <%=data.name%>
+                  <a href="/users/<%=data.id%>/location">
+                    <%=data.name%>
+                  </a>
                 </td>
                 <td><%=data.address%></td>
                 <td>
                   <a href="/users/<%=data_user.id%>/viewreview/<%=data.id%>" class="btn btn-info">View Review</a>
-                  <a href="/users/<%=data_user.id%>/addReview/<%=data.id%>" class="btn btn-success">Add Review</a>
+                  <a href="/users/<%=data_user.id%>/addreview/<%=data.id%>" class="btn btn-success">Add Review</a>
                 </td>
               </tr>
             <%})%>

@@ -109,8 +109,8 @@ router.get('/:id_user/add-genre',function (req, res) {
     }).then(data1 => {
       let test = JSON.parse(JSON.stringify(data))
       let test1 = JSON.parse(JSON.stringify(data1))
-      console.log(test);
-      console.log(test1);
+      // console.log(test);
+      // console.log(test1);
       // res.render()
         res.render('users/show-places', {data_user: data, data_genre: data1})
     })
@@ -128,6 +128,40 @@ router.get('/:user_id/viewreview/:place_id', function (req, res) {
     res.render('users/view-review', {data_conj: data})
   })
 })
+
+router.get('/:user_id/addreview/:place_id', (req, res) => {
+  models.User.findById(req.params.user_id).then(user => {
+    models.Place.findById(req.params.place_id).then(place => {
+      res.render('users/add-review', {user, place})
+    })
+  })
+})
+
+router.post('/:user_id/addreview/:place_id', (req, res) => {
+  models.UserPlace.create({
+    userId: req.params.user_id,
+    placeId: req.params.place_id,
+    comment: req.body.review,
+    rating: +req.body.rating
+  },{
+    where: {
+      userId: req.params.user_id,
+      placeId: req.params.place_id
+    }
+  }).then(data => {
+    res.redirect('/users/'+req.params.user_id+'/viewreview/'+req.params.place_id)
+  })
+})
+
+router.get('/:id_user/location', function (req, res) {
+  models.Place.findById(req.params.id_user).then(data => {
+    let test = JSON.parse(JSON.stringify(data))
+    console.log(test);
+    res.render('places/location', {data_place: data})
+  })
+})
+
+
 
 
 

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%include ../partials/navbar%>
     <meta charset="utf-8">
     <title>Login</title>
     <meta charset="utf-8">
@@ -15,7 +16,7 @@
   <h2>Login</h2>
   <%if(error){%>
     <div class="alert alert-danger" role="alert">
-      <%=error.message%>
+      <%=error%>
     </div>
   <%}%>
   <form action="/auth/login" method="post">
@@ -31,7 +32,6 @@
       <button type="submit" class="btn btn-primary">Submit</button>
       </form>
       <br>
-      <a href="/auth/register">Register</a>
     </div>
   </body>
 </center>

@@ -47,15 +47,6 @@ module.exports = (sequelize, DataTypes) => {
           res.send(error);
         })
     })
-    User.prototype.login = function(password, callback) {
-      bcrypt.compare(password, this.password)
-        .then(isLoggedin => {
-          callback(isLoggedin);
-        })
-        .catch(error => {
-          res.send(error);
-        });
-    };
   };
   return User;
 };

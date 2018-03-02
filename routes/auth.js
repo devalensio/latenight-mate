@@ -4,6 +4,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 const loginChecker = require('../helpers/loginChecker');
 const Op = Sequelize.Op;
+const bcrypt = require('bcrypt');
 
 router.get('/', (req, res) => {
   res.redirect('/auth/login')
@@ -24,23 +25,26 @@ router.post('/login', loginChecker, (req, res) => {
       }]
     }
   }).then(user => {
-    req.session.id = user.id;
-    req.session.username = user.username;
-    req.session.email = user.email;
-    req.session.age = user.age;
-    req.session.gender = user.gender;
-    res.redirect(`/users/${user.id}/addgenre`);
+    bcrypt.compare(req.body.password, user.password).then(data => {
+      if(data){
+        req.session.id = user.id;
+        req.session.username = user.username;
+        res.redirect(`/users/${user.id}/addgenre`)
+      } else {
+        res.render('auth/login', {error: 'username or password incorrect'});
+      }
+    })
   }).catch(error => {
-    res.render('auth/login', {session: req.session.username, error})
+    res.render('auth/login', {error: 'username or password incorrect'})
   })
 })
 
-router.get('/register', (req, res) => {
+router.get('/register', loginChecker, (req, res) => {
   let error
   res.render('auth/register', {error})
 })
 
-router.post('/register', (req, res) => {
+router.post('/register', loginChecker, (req, res) => {
   models.User.create({
     username: req.body.username,
     password: req.body.password,
@@ -52,6 +56,16 @@ router.post('/register', (req, res) => {
     res.redirect('/auth/login')
   }).catch(error => {
     res.render('auth/register', {error})
+  })
+})
+
+router.get('/logout', (req, res) => {
+  req.session.destroy(error => {
+    if(error){
+      res.send(error)
+    } else {
+      res.redirect('/auth/login')
+    }
   })
 })
 
